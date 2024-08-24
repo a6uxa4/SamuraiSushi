@@ -1,7 +1,18 @@
 "use client";
 
-import { createTheme } from "@mantine/core";
+import { Button, createTheme } from "@mantine/core";
 
 export const theme = createTheme({
-  /* Put your mantine theme override here */
+  components: {
+    Button: Button.extend({
+      vars: (theme, props) => {
+        if (props.variant === "") {
+          return {
+            root: {},
+          };
+        }
+        return { root: {} };
+      },
+    }),
+  },
 });

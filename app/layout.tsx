@@ -1,14 +1,16 @@
 import "@mantine/core/styles.css";
-import React from "react";
+import "@mantine/carousel/styles.css";
+import React, { ReactNode } from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../theme";
+import { Layout } from "../layouts";
 
 export const metadata = {
-  title: "Mantine Next.js template",
+  title: "Samurai - Доставка суши и роллов в Москве",
   description: "I am using Mantine with Next.js!",
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -20,7 +22,9 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          <Layout>{children}</Layout>
+        </MantineProvider>
       </body>
     </html>
   );
