@@ -15,8 +15,9 @@ export default function HomePage() {
       <CardsCarousel />
       <div style={{ padding: "100px", display: "flex", gap: 10 }}>
         <Button variant="primary">корзина</Button>
-        
-        <Button variant="text">корзина</Button>
+
+        <Button variant="text">корзинаaa</Button>
+
         <Button variant="outline">корзина</Button>
       </div>
     </div>
