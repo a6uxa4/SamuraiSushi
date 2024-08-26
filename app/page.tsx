@@ -14,7 +14,7 @@ export default function HomePage() {
       <div style={{ padding: "100px", display: "flex", gap: 10 }}>
         <Button variant="outline">КОРЗИНА</Button>
         <Button variant="primary">КОРЗИНА</Button>
-        <Button>КОРЗИНА</Button>
+        <Button variant="text">КОРЗИНА</Button>
       </div>
     </div>
   );
