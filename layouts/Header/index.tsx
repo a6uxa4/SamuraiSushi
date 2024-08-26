@@ -1,18 +1,13 @@
 "use client";
 
-import {
-  Button,
-  Container,
-  Flex,
-  Group,
-  Popover,
-  Space,
-  Tabs,
-} from "@mantine/core";
+import { Button, Container, Flex, Group, Popover, Tabs } from "@mantine/core";
 
 import classes from "./style.module.css";
-import { ThemeSwitch } from "../../components/UI/ThemeSwitch";
+const ThemeSwitch = dynamic(() => import("../../components/UI/ThemeSwitch"), {
+  ssr: false,
+});
 import { ShoppingBasket } from "lucide-react";
+import dynamic from "next/dynamic";
 
 const tabs = [
   "Наборы",

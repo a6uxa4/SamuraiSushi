@@ -1,3 +1,4 @@
+import { Button } from "@mantine/core";
 import { CardsCarousel } from "../screens/banner";
 
 export default function HomePage() {
@@ -10,6 +11,11 @@ export default function HomePage() {
       }}
     >
       <CardsCarousel />
+      <div style={{ padding: "100px", display: "flex", gap: 10 }}>
+        <Button variant="outline">КОРЗИНА</Button>
+        <Button variant="primary">КОРЗИНА</Button>
+        <Button>КОРЗИНА</Button>
+      </div>
     </div>
   );
 }
