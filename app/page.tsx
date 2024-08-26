@@ -1,5 +1,7 @@
-import { Button } from "@mantine/core";
+"use client";
+
 import { CardsCarousel } from "../screens/banner";
+import { Button } from "../theme/components";
 
 export default function HomePage() {
   return (
@@ -12,9 +14,9 @@ export default function HomePage() {
     >
       <CardsCarousel />
       <div style={{ padding: "100px", display: "flex", gap: 10 }}>
-        <Button variant="outline">КОРЗИНА</Button>
-        <Button variant="primary">КОРЗИНА</Button>
-        <Button variant="text">КОРЗИНА</Button>
+        <Button variant="primary">корзина</Button>
+        <Button variant="text">корзина</Button>
+        <Button variant="outline">корзина</Button>
       </div>
     </div>
   );
