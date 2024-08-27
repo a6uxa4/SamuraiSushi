@@ -23,9 +23,10 @@ export const ButtonStyle = {
         backgroundColor: isDisabled ? theme.colors.gray[4] : "inherit",
         color: isDisabled ? theme.colors.gray[6] : "inherit",
         border: "none",
+        borderRadius: 20,
         cursor: isDisabled ? "not-allowed" : "pointer",
-        fontSize: "1rem", // Установите начальный размер шрифта
-        padding: "0.5rem 1rem", // Установите отступы, если необходимо
+        fontSize: "0.8rem",
+        padding: "0.5rem 1rem",
         "&:hover": {
           backgroundColor: isDisabled ? theme.colors.gray[4] : "inherit",
         },

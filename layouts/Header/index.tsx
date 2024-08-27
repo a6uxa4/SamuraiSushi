@@ -37,7 +37,10 @@ export function HeaderTabs() {
             <ThemeSwitch />
             <Popover width={200} position="bottom" withArrow shadow="md">
               <Popover.Target>
-                <Button rightSection={<ShoppingBasket size={16} />}>
+                <Button
+                  variant="primary"
+                  rightSection={<ShoppingBasket size={16} />}
+                >
                   КОРЗИНА
                 </Button>
               </Popover.Target>
