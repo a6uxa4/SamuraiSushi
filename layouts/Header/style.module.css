@@ -5,15 +5,27 @@
     var(--mantine-color-dark-6)
   );
   border-bottom: rem(1px) solid
-    light-dark(var(--mantine-color-gray-2), transparent);
-  margin-bottom: rem(120px);
+    light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
 }
 
 .mainSection {
   padding-bottom: var(--mantine-spacing-sm);
 }
 
+.scrollArea {
+  flex: 1;
+}
+
+.tabs {
+  width: 100%;
+  overflow: visible;
+}
+
 .tabsList {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+
   &::before {
     display: none;
   }
@@ -22,9 +34,11 @@
 .tab {
   font-weight: 500;
   height: rem(38);
+  max-height: rem(37);
   background-color: transparent;
   position: relative;
   bottom: -1px;
+  white-space: nowrap;
 
   &::before,
   &::after {
@@ -52,4 +66,26 @@
     );
     border-bottom-color: transparent;
   }
+}
+
+.actionIcon {
+  width: 30px;
+  height: 30px;
+  background-color: light-dark(
+    var(--mantine-color-gray-5),
+    var(--mantine-color-dark-5)
+  ) !important;
+  color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-1));
+
+  &:hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-4),
+      var(--mantine-color-dark-4)
+    );
+  }
+}
+
+.divider {
+  border-left: 1px solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }

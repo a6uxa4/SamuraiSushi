@@ -1,12 +1,22 @@
 "use client";
 
-import { Button, Container, Flex, Group, Popover, Tabs } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Container,
+  Flex,
+  Group,
+  Popover,
+  rem,
+  ScrollArea,
+  Tabs,
+} from "@mantine/core";
 
 import classes from "./style.module.css";
 const ThemeSwitch = dynamic(() => import("../../components/UI/ThemeSwitch"), {
   ssr: false,
 });
-import { ShoppingBasket } from "lucide-react";
+import { ArrowDownUp, Search, ShoppingBasket } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -62,18 +72,43 @@ export function HeaderTabs() {
         </Flex>
       </Container>
       <Container size="md">
-        <Tabs
-          defaultValue="Наборы"
-          variant="outline"
-          visibleFrom="sm"
-          classNames={{
-            root: classes.tabs,
-            list: classes.tabsList,
-            tab: classes.tab,
-          }}
-        >
-          <Tabs.List>{items}</Tabs.List>
-        </Tabs>
+        <Flex align="center" gap={10}>
+          <ScrollArea
+            w="100%"
+            h={rem(38)}
+            className={classes.scrollArea}
+            scrollbarSize={0}
+          >
+            <Tabs
+              defaultValue="Наборы"
+              variant="outline"
+              visibleFrom="sm"
+              classNames={{
+                root: classes.tabs,
+                list: classes.tabsList,
+                tab: classes.tab,
+              }}
+            >
+              <Tabs.List>{items}</Tabs.List>
+            </Tabs>
+          </ScrollArea>
+          <Flex className={classes.divider} gap={10} pl="sm">
+            <ActionIcon
+              radius="xl"
+              className={classes.actionIcon}
+              aria-label="filter"
+            >
+              <ArrowDownUp width={17} height={17} />
+            </ActionIcon>
+            <ActionIcon
+              radius="xl"
+              className={classes.actionIcon}
+              aria-label="search"
+            >
+              <Search width={17} height={17} />
+            </ActionIcon>
+          </Flex>
+        </Flex>
       </Container>
     </div>
   );
