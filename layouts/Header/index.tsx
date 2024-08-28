@@ -8,6 +8,7 @@ const ThemeSwitch = dynamic(() => import("../../components/UI/ThemeSwitch"), {
 });
 import { ShoppingBasket } from "lucide-react";
 import dynamic from "next/dynamic";
+import { useDisclosure } from "@mantine/hooks";
 
 const tabs = [
   "Наборы",
@@ -22,6 +23,8 @@ const tabs = [
 ];
 
 export function HeaderTabs() {
+  const [opened, { close, open, toggle }] = useDisclosure(false);
+
   const items = tabs.map((tab) => (
     <Tabs.Tab value={tab} key={tab}>
       {tab}
@@ -35,16 +38,25 @@ export function HeaderTabs() {
           LOGO
           <Group>
             <ThemeSwitch />
-            <Popover width={200} position="bottom" withArrow shadow="md">
+            <Popover
+              width={200}
+              position="bottom"
+              withArrow
+              shadow="md"
+              opened={opened}
+              offset={0}
+            >
               <Popover.Target>
                 <Button
+                  onMouseEnter={open}
                   variant="primary"
+                  onClick={toggle}
                   rightSection={<ShoppingBasket size={16} />}
                 >
                   КОРЗИНА
                 </Button>
               </Popover.Target>
-              <Popover.Dropdown>HELLO</Popover.Dropdown>
+              <Popover.Dropdown onMouseLeave={close}>HELLO</Popover.Dropdown>
             </Popover>
           </Group>
         </Flex>
