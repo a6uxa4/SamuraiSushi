@@ -1,9 +1,11 @@
 "use client";
 
 import { CardsCarousel } from "../screens/banner";
+import { useStore } from "../store/useStore";
 import { Button } from "../theme/components";
 
 export default function HomePage() {
+  const { count, favorite, increaseCount, deleteCount } = useStore();
   return (
     <div
       style={{
@@ -16,9 +18,18 @@ export default function HomePage() {
       <div style={{ padding: "100px", display: "flex", gap: 10 }}>
         <Button variant="primary">корзина</Button>
 
-        <Button variant="text">корзинаaaa</Button>
+        <Button onClick={deleteCount} variant="text">
+          корзинаaaa
+        </Button>
 
-        <Button variant="outline">корзина</Button>
+        <Button
+          variant="outline"
+          onClick={increaseCount}
+          leftSection={count}
+          rightSection={favorite}
+        >
+          корзина
+        </Button>
       </div>
     </div>
   );
