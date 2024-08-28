@@ -30,6 +30,7 @@ const tabs = [
   "Соусы",
   "Специи",
   "Комбо",
+  "Напитки и десерты",
 ];
 
 export function HeaderTabs() {
