@@ -1,6 +1,7 @@
 import classes from "./style.module.css";
 
 import data from "../../public/product.json";
+import ProductCard from "../../components/UI/ReusableCard";
 
 export const ProductPage = () => {
   return (
@@ -16,7 +17,9 @@ export const ProductPage = () => {
                 height: "400px",
                 border: "1px solid orange",
               }}
-            ></div>
+            >
+              <ProductCard />
+            </div>
           ))}
         </div>
       ))}
