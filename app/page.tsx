@@ -1,7 +1,8 @@
 "use client";
 
 import { CardsCarousel } from "../screens/banner";
-import { useStore } from "../store/useStore";
+import { ProductPage } from "../screens/product";
+import { useStore } from "../store/models/useStore";
 import { Button } from "../theme/components";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       }}
     >
       <CardsCarousel />
+      <ProductPage />
       <div style={{ padding: "100px", display: "flex", gap: 10 }}>
         <Button variant="primary">корзина</Button>
 
