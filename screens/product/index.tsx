@@ -12,13 +12,19 @@ export const ProductPage = () => {
           {item.content.map((product) => (
             <div
               key={product.productId}
-              style={{
-                width: "300px",
-                height: "400px",
-                border: "1px solid orange",
-              }}
+              // style={{
+              //   width: "300px",
+              //   height: "400px",
+              //   border: "1px solid orange",
+              // }}
             >
-              <ProductCard />
+              <ProductCard
+                image={product.image}
+                name={product.name}
+                composition={product.describtion}
+                weight={product.gram}
+                price={product.price}
+              />
             </div>
           ))}
         </div>

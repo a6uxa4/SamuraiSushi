@@ -1,11 +1,12 @@
-// components/ProductCard.tsx
-import React from "react";
+import { Card, Image, Text, Badge, Group } from "@mantine/core";
+import classes from "./style.module.css";
+import { Button } from "../../../theme/components";
 
 type ProductCardProps = {
   image: string;
   name: string;
   composition: string;
-  weight: number;
+  weight: string;
   price: number;
 };
 
@@ -17,46 +18,37 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
 }) => {
   return (
-    <div style={styles.card}>
-      <img src={image} alt={name} style={styles.image} />
-      <h2 style={styles.name}>{name}</h2>
-      <p style={styles.composition}>Состав: {composition}</p>
-      <p style={styles.weight}>Вес: {weight} г</p>
-      <p style={styles.price}>{price}₽</p>
-    </div>
-  );
-};
+    <Card
+      shadow="sm"
+      padding="lg"
+      radius="md"
+      withBorder
+      className={classes.cardContainer}
+    >
+      <Card.Section>
+        <Image
+          src={image || "https://shorturl.at/gKTtg"}
+          alt={name}
+          className={classes.img}
+        />
+      </Card.Section>
 
-const styles = {
-  card: {
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    padding: "16px",
-    maxWidth: "300px",
-    textAlign: "center" as const,
-  },
-  image: {
-    width: "100%",
-    height: "auto",
-    borderRadius: "8px",
-  },
-  name: {
-    fontSize: "1.5rem",
-    margin: "16px 0",
-  },
-  composition: {
-    fontSize: "1rem",
-    color: "#555",
-  },
-  weight: {
-    fontSize: "1rem",
-    color: "#555",
-  },
-  price: {
-    fontSize: "1.2rem",
-    color: "#000",
-    fontWeight: "bold" as const,
-  },
+      <Group justify="space-between" mt="md" mb="xs">
+        <Text fw={500}>{name}</Text>
+        <Badge color="pink">{weight}</Badge>
+      </Group>
+
+      <Text size="sm" color="dimmed">
+        {composition}
+      </Text>
+
+      <Text size="lg" fw={700} mt="md">
+        {price} руб.
+      </Text>
+
+      <Button variant="outline">Добавить в корзину</Button>
+    </Card>
+  );
 };
 
 export default ProductCard;
