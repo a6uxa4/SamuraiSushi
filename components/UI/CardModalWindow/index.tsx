@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import { Modal, Text, Image, Button, Group, Badge } from "@mantine/core";
 import classes from "./style.module.css";
-import { Button as ThemeButton } from "../../../theme/components";
 
-type ModalWindowProps = {
+import { IProductContent } from "../../../store/common/product.common";
+
+interface ModalWindowProps extends IProductContent {
   opened: boolean;
   onClose: () => void;
-  title: string;
-  image: string;
-  description: string;
-  price: number;
   size: string;
-  weight: string;
-};
+}
 
 const ModalWindow: React.FC<ModalWindowProps> = ({
   opened,
   onClose,
-  title,
   image,
   description,
   price,
   size,
-  weight,
+  gram,
+  name,
 }) => {
   const [quantity, setQuantity] = useState(1);
 
@@ -33,16 +29,16 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
   const totalPrice = price * quantity;
 
   return (
-    <Modal opened={opened} onClose={onClose} title={title} centered size={size}>
+    <Modal opened={opened} onClose={onClose} title={name} centered size={size}>
       <div className={classes.modalContent}>
-        <Image src={image} alt={title} className={classes.modalImage} />
+        <Image src={image} alt={name} className={classes.modalImage} />
         <div className={classes.rightBarData}>
           <Text size="lg" mt="md" className={classes.mainText}>
             {description}
           </Text>
 
           <Badge size="md" mt="md" className={classes.weightText} color="pink">
-            Вес: {weight}
+            Вес: {gram}
           </Badge>
 
           <Text className={classes.priceDisplay}>{totalPrice} руб.</Text>
@@ -66,7 +62,7 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
                 +
               </Button>
             </Group>
-            <ThemeButton
+            <Button
               variant="primary"
               className={classes.addToCartButton}
               onClick={() => {
@@ -75,7 +71,7 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
               }}
             >
               Добавить в корзину
-            </ThemeButton>
+            </Button>
           </div>
         </div>
       </div>

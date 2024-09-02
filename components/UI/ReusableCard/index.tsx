@@ -1,28 +1,18 @@
-import React, { useState } from "react";
-import { Card, Image, Text, Badge, Group } from "@mantine/core";
+import { Card, Image, Text, Badge, Group, Button } from "@mantine/core";
 import classes from "./style.module.css";
-import { Button as ThemeButton } from "../../../theme/components";
 import ModalWindow from "../CardModalWindow";
+import { useDisclosure } from "@mantine/hooks";
+import { IProductContent } from "../../../store/common/product.common";
 
-type ProductCardProps = {
-  image: string;
-  name: string;
-  composition: string;
-  weight: string;
-  price: number;
-};
-
-const ProductCard: React.FC<ProductCardProps> = ({
+const ProductCard: React.FC<IProductContent> = ({
   image,
   name,
-  composition,
-  weight,
+  description,
+  gram,
   price,
+  ...rest
 }) => {
-  const [opened, setOpened] = useState(false);
-
-  const handleOpen = () => setOpened(true);
-  const handleClose = () => setOpened(false);
+  const [opened, { toggle }] = useDisclosure();
 
   return (
     <>
@@ -32,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         radius="md"
         withBorder
         className={classes.cardContainer}
-        onClick={handleOpen}
+        onClick={toggle}
       >
         <Card.Section>
           <Image
@@ -46,31 +36,32 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <Text fw={500} className={classes.headingTitle}>
             {name}
           </Text>
-          <Badge color="pink">{weight}</Badge>
+          <Badge color="pink">{gram}</Badge>
         </Group>
 
         <Text size="md" color="#5A6A70" className={classes.mainText}>
-          {composition}
+          {description}
         </Text>
 
         <div className={classes.priceAndButton}>
           <Text size="lg" fw={700} mt="md">
             {price} руб.
           </Text>
-          <ThemeButton variant="outline" className={classes.toBasketButton}>
+          <Button variant="outline" className={classes.toBasketButton}>
             Добавить в корзину
-          </ThemeButton>
+          </Button>
         </div>
       </Card>
       <ModalWindow
         opened={opened}
-        onClose={handleClose}
-        title={name}
-        image={image || "https://shorturl.at/gKTtg"}
-        description={composition}
-        price={price}
+        onClose={toggle}
         size="780px"
-        weight={weight}
+        description={description}
+        image={image}
+        name={name}
+        gram={gram}
+        price={price}
+        {...rest}
       />
     </>
   );
