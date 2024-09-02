@@ -1,0 +1,89 @@
+.modalContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.modalImage {
+  width: 300px;
+  height: 306px;
+  object-fit: cover;
+  position: relative;
+  bottom: 36px;
+}
+
+.counterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 20px;
+  background-color: #ececec;
+  padding: 1.2px;
+}
+
+.priceDisplay {
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  left: 240px;
+}
+& :global(.mantine-Modal-header) {
+  position: relative;
+  top: 28px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  left: 370px;
+  border-top-right-radius: 14px;
+  h2 {
+    max-width: 298px;
+    height: auto;
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+& :global(.mantine-Modal-content) {
+  border-radius: 14px;
+  max-height: 430px;
+  overflow: hidden;
+}
+& :global(.style_modalContent__0WBL7) {
+  position: relative;
+  right: 6px;
+}
+& :global(.mantine-Modal-close) {
+  width: 40px;
+  height: 40px;
+}
+
+.rightBarData {
+  position: relative;
+  width: 380px;
+  left: 14px;
+  background-color: #fafafa;
+  padding: 0px 0px 0px 20px;
+}
+.mainText {
+  width: 328px;
+  height: auto;
+  line-height: 1.4;
+  font-size: 16px;
+}
+.lowTwoButtons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+.addToCartButton {
+  position: relative;
+  right: 22px;
+}
+.counterButton {
+  font-size: 30px;
+  transform: scale(1.6);
+}
