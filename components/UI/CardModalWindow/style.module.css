@@ -2,16 +2,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  position: relative;
+  padding: 10px;
+  @media (max-width: 48em) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+.modal {
+  width: 100%;
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff6b6b;
+  padding: 10px 0;
 }
 
 .modalImage {
-  width: 300px;
   height: 306px;
   object-fit: cover;
-  position: relative;
-  bottom: 36px;
 }
 
 .counterContainer {
@@ -27,33 +37,42 @@
 .priceDisplay {
   font-size: 16px;
   font-weight: bold;
-  position: relative;
-  left: 240px;
+  margin-top: 5px;
 }
+
 & :global(.mantine-Modal-header) {
-  position: relative;
-  top: 28px;
-  width: 400px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  left: 370px;
-  border-top-right-radius: 14px;
-  h2 {
-    max-width: 298px;
-    height: auto;
-    font-size: 24px;
-    font-weight: 700;
-  }
 }
+
+& :global(.mantine-Modal-title) {
+  flex: 1;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+& :global(.mantine-Modal-close) {
+  position: absolute;
+  right: 10px;
+  top: 25%;
+  width: 40px;
+  height: 40px;
+}
+
 & :global(.mantine-Modal-content) {
   border-radius: 14px;
   max-height: 430px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 48em) {
+  }
 }
 & :global(.style_modalContent__0WBL7) {
-  position: relative;
-  right: 6px;
 }
 & :global(.mantine-Modal-close) {
   width: 40px;
@@ -61,11 +80,13 @@
 }
 
 .rightBarData {
-  position: relative;
-  width: 380px;
-  left: 14px;
+  width: 23.75rem;
   background-color: #fafafa;
   padding: 0px 0px 0px 20px;
+  @media (max-width: 48em) {
+    /* scale: 0.9; */
+    /* width: 100%; */
+  }
 }
 .mainText {
   width: 328px;
@@ -76,12 +97,9 @@
 .lowTwoButtons {
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: 15px;
+  padding: 20px 20px;
 }
 .addToCartButton {
-  position: relative;
-  right: 22px;
 }
 .counterButton {
   font-size: 30px;

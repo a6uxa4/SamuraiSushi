@@ -1,6 +1,7 @@
 .cardContainer {
   width: 303px;
   height: 530px;
+  cursor: pointer;
 }
 .img {
   width: 100%;

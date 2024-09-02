@@ -29,7 +29,14 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
   const totalPrice = price * quantity;
 
   return (
-    <Modal opened={opened} onClose={onClose} title={name} centered size={size}>
+    <Modal
+      opened={opened}
+      onClose={onClose}
+      title={<Text className={classes.modalTitle}>{name}</Text>}
+      centered
+      size={size}
+      className={classes.modal}
+    >
       <div className={classes.modalContent}>
         <Image src={image} alt={name} className={classes.modalImage} />
         <div className={classes.rightBarData}>
