@@ -14,6 +14,10 @@
   bottom: 36px;
 }
 
+.counterDisplay {
+  color: var(--mantine-color-dark-6);
+}
+
 .counterContainer {
   display: flex;
   align-items: center;
@@ -61,10 +65,11 @@
 }
 
 .rightBarData {
-  position: relative;
-  width: 380px;
-  left: 14px;
-  background-color: #fafafa;
+  width: 23.75rem;
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-6)
+  );
   padding: 0px 0px 0px 20px;
 }
 .mainText {
