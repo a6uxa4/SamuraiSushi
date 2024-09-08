@@ -11,10 +11,5 @@ export interface IProductContent {
   image: string;
   description: string;
   price: number;
-  nutritionalValue: number;
-  nutritionalContent: {
-    value: string;
-    label: string;
-    code: string;
-  }[];
+  quantity: number;
 }

@@ -3,6 +3,7 @@ import { Modal, Text, Image, Button, Group, Badge } from "@mantine/core";
 import classes from "./style.module.css";
 
 import { IProductContent } from "../../../store/common/product.common";
+import { useCart } from "../../../utils/hooks/useCart";
 
 interface ModalWindowProps extends IProductContent {
   opened: boolean;
@@ -13,32 +14,44 @@ interface ModalWindowProps extends IProductContent {
 const ModalWindow: React.FC<ModalWindowProps> = ({
   opened,
   onClose,
-  image,
-  description,
-  price,
-  size,
-  gram,
-  name,
+  ...rest
 }) => {
+  const { isInCart, toggleCartItem, isClient, totalProductQuantity } =
+    useCart();
+
+  const handleAddedProduct = (productId: IProductContent) => {
+    toggleCartItem(productId);
+  };
+
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => setQuantity((prev) => prev + 1);
   const handleDecrement = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-  const totalPrice = price * quantity;
+  const totalPrice = rest.price * quantity;
 
   return (
-    <Modal opened={opened} onClose={onClose} title={name} centered size={size}>
+    <Modal
+      opened={opened}
+      onClose={onClose}
+      title={rest.name}
+      centered
+      size={rest.size}
+    >
       <div className={classes.modalContent}>
-        <Image src={image} alt={name} className={classes.modalImage} />
+        <Image
+          src={rest.image}
+          alt={rest.name}
+          className={classes.modalImage}
+        />
         <div className={classes.rightBarData}>
           <Text size="lg" mt="md" className={classes.mainText}>
-            {description}
+            {rest.description}
           </Text>
 
           <Badge size="md" mt="md" className={classes.weightText} color="pink">
-            Вес: {gram}
+            Вес: {rest.gram}
           </Badge>
 
           <Text className={classes.priceDisplay}>{totalPrice} руб.</Text>
@@ -53,7 +66,9 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
               >
                 -
               </Button>
-              <Text className={classes.counterDisplay}>{quantity}</Text>
+              <Text className={classes.counterDisplay}>
+                {totalProductQuantity(rest.productId) || 1}
+              </Text>
               <Button
                 variant="text"
                 className={classes.counterButton}
@@ -65,12 +80,11 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
             <Button
               variant="primary"
               className={classes.addToCartButton}
-              onClick={() => {
-                console.log(`Added ${quantity} items to cart`);
-                onClose();
-              }}
+              onClick={() => handleAddedProduct(rest)}
             >
-              Добавить в корзину
+              {isClient && isInCart(rest.productId)
+                ? "Удалить из корзины"
+                : "Добавить в корзину"}
             </Button>
           </div>
         </div>

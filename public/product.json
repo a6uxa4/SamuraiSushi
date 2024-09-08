@@ -7,22 +7,10 @@
         "productId": 1,
         "name": "Чикен том ям",
         "gram": "205 г",
-        "image": "",
+        "image": "https://shorturl.at/gKTtg",
         "description": "Сочное куриное филе, укутанное нори и обильно политое сладковатым соусом том ям. Состав: курица жареная, нори, помидор, рис, салат, соус том ям",
         "price": 275,
-        "nutritionalValue": 100,
-        "nutritionalContent": [
-          {
-            "value": "182,9",
-            "label": "Энерг. ценн.",
-            "code": "Ккал"
-          },
-          {
-            "value": "5,3",
-            "label": "Белки",
-            "code": "грамм"
-          }
-        ]
+        "quantity": 0
       }
     ]
   },
@@ -31,25 +19,13 @@
     "title": "Новые",
     "content": [
       {
-        "productId": 1,
+        "productId": 2,
         "name": "Чикен том ям",
         "gram": "205 г",
-        "image": "",
+        "image": "https://shorturl.at/gKTtg",
         "description": "Сочное куриное филе, укутанное нори и обильно политое сладковатым соусом том ям. Состав: курица жареная, нори, помидор, рис, салат, соус том ям",
         "price": 275,
-        "nutritionalValue": 100,
-        "nutritionalContent": [
-          {
-            "value": "182,9",
-            "label": "Энерг. ценн.",
-            "code": "Ккал"
-          },
-          {
-            "value": "5,3",
-            "label": "Белки",
-            "code": "грамм"
-          }
-        ]
+        "quantity": 0
       }
     ]
   }
