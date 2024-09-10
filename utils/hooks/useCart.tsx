@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useCallback, useEffect } from "react";
 import Cookies from "js-cookie";
 import { IProductContent } from "../../store/common/product.common";

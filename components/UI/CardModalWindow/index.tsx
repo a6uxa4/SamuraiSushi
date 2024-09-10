@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Modal, Text, Image, Button, Group, Badge } from "@mantine/core";
 import classes from "./style.module.css";

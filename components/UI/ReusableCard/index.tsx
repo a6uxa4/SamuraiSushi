@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, Image, Text, Badge, Group, Button } from "@mantine/core";
 import classes from "./style.module.css";
 import ModalWindow from "../CardModalWindow";
