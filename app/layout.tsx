@@ -5,6 +5,7 @@ import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../theme";
 import { Layout } from "../layouts";
 import { ReduxProvider } from "../providers/ReduxProvider";
+import { UuidProvider } from "../providers/UuiProvider";
 
 export const metadata = {
   title: "Samurai - Доставка суши и роллов в Москве",
@@ -24,9 +25,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <ReduxProvider>
-          <MantineProvider theme={theme}>
-            <Layout>{children}</Layout>
-          </MantineProvider>
+          <UuidProvider>
+            <MantineProvider theme={theme}>
+              <Layout>{children}</Layout>
+            </MantineProvider>
+          </UuidProvider>
         </ReduxProvider>
       </body>
     </html>

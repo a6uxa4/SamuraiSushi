@@ -1,14 +1,7 @@
 import { FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query";
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: "localhost:8080",
-  prepareHeaders(headers, { getState }: any) {
-    const token = getState().auth.user?.token;
-    if (token) {
-      headers.set("authorization", `Bearer ${token}`);
-    }
-    return headers;
-  },
+  baseUrl: "http://localhost:8080",
 });
 
 export const baseQueryWithReauth = async (

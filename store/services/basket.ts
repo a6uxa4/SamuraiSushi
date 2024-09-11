@@ -16,16 +16,13 @@ export const basketApi = createApi({
           body,
         };
       },
-      invalidatesTags: ["basket"],
     }),
-    getAllBasket: builder.query<IBasketGetAll, number>({
+    getAllBasket: builder.query<IBasketGetAll, string | null>({
       query: (userId) => {
         return {
           url: `/basket?userId=${userId}`,
-          method: "GET",
         };
       },
-      providesTags: ["basket"],
     }),
   }),
 });
