@@ -11,15 +11,19 @@ import { MouseEvent } from "react";
 const ProductCard: React.FC<IProductContent> = ({ ...rest }) => {
   const [opened, { toggle }] = useDisclosure();
 
-  const { data } = useCart();
-  console.log(data);
+  const { isInCart, deleteBasket, addBasket } = useCart();
 
-  const handleAddedProduct = (
-    productId: IProductContent,
-    event: MouseEvent
-  ) => {
+  const handleAddedProduct = (event: MouseEvent) => {
     event.stopPropagation();
-    // toggleCartItem(productId);
+    if (isInCart(rest.productId)) {
+      deleteBasket(rest.productId);
+    } else {
+      addBasket({
+        productId: rest.productId,
+        quantity: 1,
+        price: rest.price,
+      });
+    }
   };
 
   return (
@@ -52,17 +56,17 @@ const ProductCard: React.FC<IProductContent> = ({ ...rest }) => {
             {rest.price} руб.
           </Text>
           <Button
-            onClick={(event) => handleAddedProduct(rest, event)}
+            onClick={(event) => handleAddedProduct(event)}
             variant="outline"
             className={classes.toBasketButton}
           >
-            {/* {isClient && isInCart(rest.productId)
+            {isInCart(rest.productId)
               ? "Удалить из корзины"
-              : "Добавить в корзину"} */}
+              : "Добавить в корзину"}
           </Button>
         </div>
       </Card>
-      {/* <ModalWindow opened={opened} onClose={toggle} size="780px" {...rest} /> */}
+      <ModalWindow opened={opened} onClose={toggle} size="780px" {...rest} />
     </>
   );
 };

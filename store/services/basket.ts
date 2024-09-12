@@ -1,7 +1,11 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 
 import { baseQueryWithReauth } from "../interceptor";
-import { IBasketCreate, IBasketGetAll } from "../common/basket.common";
+import {
+  IBasketCreate,
+  IBasketGetAll,
+  IBasketDelete,
+} from "../common/basket.common";
 
 export const basketApi = createApi({
   reducerPath: "basketApi",
@@ -9,22 +13,38 @@ export const basketApi = createApi({
   tagTypes: ["basket"],
   endpoints: (builder) => ({
     createBasket: builder.mutation<void, IBasketCreate>({
-      query: (body) => {
+      query: ({ body, userId }) => {
         return {
-          url: "/basket",
+          url: `/basket?userId=${userId}`,
           method: "POST",
           body,
         };
       },
+      invalidatesTags: ["basket"],
     }),
     getAllBasket: builder.query<IBasketGetAll, string | null>({
       query: (userId) => {
         return {
           url: `/basket?userId=${userId}`,
+          method: "GET",
         };
       },
+      providesTags: ["basket"],
+    }),
+    deleteBasketByProductId: builder.mutation<void, IBasketDelete>({
+      query: ({ productId, userId }) => {
+        return {
+          url: `/basket/${productId}?userId=${userId}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["basket"],
     }),
   }),
 });
 
-export const { useCreateBasketMutation, useGetAllBasketQuery } = basketApi;
+export const {
+  useCreateBasketMutation,
+  useGetAllBasketQuery,
+  useDeleteBasketByProductIdMutation,
+} = basketApi;

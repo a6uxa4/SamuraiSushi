@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import { Modal, Text, Image, Button, Group, Badge } from "@mantine/core";
 import classes from "./style.module.css";
 
@@ -18,20 +17,28 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
   onClose,
   ...rest
 }) => {
-  const { isInCart, toggleCartItem, isClient, totalProductQuantity } =
-    useCart();
+  const {
+    isInCart,
+    addBasket,
+    totalProductQuantity,
+    totalProductPrice,
+    deleteBasket,
+  } = useCart();
 
-  const handleAddedProduct = (productId: IProductContent) => {
-    toggleCartItem(productId);
+  const handleAddedProduct = () => {
+    if (isInCart(rest.productId)) {
+      deleteBasket(rest.productId);
+    } else {
+      addBasket({
+        productId: rest.productId,
+        quantity: 1,
+        price: rest.price,
+      });
+    }
   };
 
-  const [quantity, setQuantity] = useState(1);
-
-  const handleIncrement = () => setQuantity((prev) => prev + 1);
-  const handleDecrement = () =>
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-
-  const totalPrice = rest.price * quantity;
+  const handleIncrement = () => {};
+  const handleDecrement = () => {};
 
   return (
     <Modal
@@ -56,14 +63,16 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
             Вес: {rest.gram}
           </Badge>
 
-          <Text className={classes.priceDisplay}>{totalPrice} руб.</Text>
+          <Text className={classes.priceDisplay}>
+            {totalProductPrice(rest.productId) || rest.price} руб.
+          </Text>
 
           <div className={classes.lowTwoButtons}>
             <Group className={classes.counterContainer}>
               <Button
                 className={classes.counterButton}
                 onClick={handleDecrement}
-                disabled={quantity === 1}
+                disabled={totalProductQuantity(rest.productId) === 1}
                 variant="text"
               >
                 -
@@ -82,9 +91,9 @@ const ModalWindow: React.FC<ModalWindowProps> = ({
             <Button
               variant="primary"
               className={classes.addToCartButton}
-              onClick={() => handleAddedProduct(rest)}
+              onClick={handleAddedProduct}
             >
-              {isClient && isInCart(rest.productId)
+              {isInCart(rest.productId)
                 ? "Удалить из корзины"
                 : "Добавить в корзину"}
             </Button>
