@@ -6,10 +6,12 @@ import {
   Container,
   Flex,
   Group,
+  Image,
   Popover,
   rem,
   ScrollArea,
   Tabs,
+  Text,
 } from "@mantine/core";
 
 import classes from "./style.module.css";
@@ -19,6 +21,7 @@ const ThemeSwitch = dynamic(() => import("../../components/UI/ThemeSwitch"), {
 import { ArrowDownUp, Search, ShoppingBasket } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useDisclosure } from "@mantine/hooks";
+import { useCart } from "../../utils/hooks/useCart";
 
 const tabs = [
   "Наборы",
@@ -35,6 +38,7 @@ const tabs = [
 
 export function HeaderTabs() {
   const [opened, { close, open, toggle }] = useDisclosure(false);
+  const { selectedProduct } = useCart();
 
   const items = tabs.map((tab) => (
     <Tabs.Tab value={tab} key={tab}>
@@ -67,7 +71,20 @@ export function HeaderTabs() {
                   КОРЗИНА
                 </Button>
               </Popover.Target>
-              <Popover.Dropdown onMouseLeave={close}>HELLO</Popover.Dropdown>
+              <Popover.Dropdown w={300} onMouseLeave={close}>
+                {selectedProduct.map((item) => (
+                  <Flex key={item.productId} mt="sm" gap={5} w={300}>
+                    <Image
+                      w={70}
+                      h={70}
+                      radius={10}
+                      src={item.image}
+                      alt={item.name}
+                    />
+                    <Text>{item.name}</Text>
+                  </Flex>
+                ))}
+              </Popover.Dropdown>
             </Popover>
           </Group>
         </Flex>

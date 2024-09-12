@@ -2,6 +2,7 @@
 
 import { useUuid } from "../../providers/UuiProvider";
 import { IProductInner } from "../../store/common/basket.common";
+import productData from "../../public/product.json";
 import {
   useCreateBasketMutation,
   useDeleteBasketByProductIdMutation,
@@ -34,6 +35,11 @@ export const useCart = () => {
     );
   };
 
+  const selectedProduct = productData
+    .map((tab) => tab.content)
+    .flat()
+    .filter((el) => products.some((ev) => ev.productId === el.productId));
+
   const [handleAddedProduct] = useCreateBasketMutation();
   const [handleDeleteProduct] = useDeleteBasketByProductIdMutation();
 
@@ -58,5 +64,6 @@ export const useCart = () => {
     deleteBasket,
     totalProductQuantity,
     totalProductPrice,
+    selectedProduct,
   };
 };
